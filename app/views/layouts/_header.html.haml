@@ -1,0 +1,16 @@
+%h2.text-center.well Rails/Facebook Integration
+.omni-auth-text
+  - if user_signed_in?
+    = link_to 'Home', "/",class: "btn btn-link"
+    = "  | "
+    = link_to "Welcome" + " " + "#{current_user.first_name}", edit_user_registration_path , class: "btn btn-link"
+    = " | " 
+    = link_to 'Log Out', destroy_user_session_path, method: "delete", class: "btn btn-link"
+  - else
+    = link_to 'Home', "/", class: "btn btn-link"
+    = " | "
+    = link_to 'Sign Up', new_user_registration_path, class: "btn btn-link"
+    = " | "
+    = link_to 'Log In', user_session_path, class: "btn btn-link"
+    = " | "
+    = link_to image_tag('facebook-button.png',class: "facebook-button" ),user_omniauth_authorize_path(:facebook)
